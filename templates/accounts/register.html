@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+
+{% block title %}Register - Task Scheduler{% endblock %}
+
+{% block content %}
+<div class="max-w-md mx-auto bg-white p-8 rounded shadow">
+    <h2 class="text-2xl font-bold mb-6">Register</h2>
+    <form method="post">
+        {% csrf_token %}
+        <div class="mb-4">
+            <label for="{{ form.username.id_for_label }}" class="block text-gray-700 font-bold mb-2">
+                {{ form.username.label }}
+            </label>
+            {{ form.username }}
+            {% if form.username.errors %}
+                {% for error in form.username.errors %}
+                    <p class="text-red-500 text-sm mt-1">{{ error }}</p>
+                {% endfor %}
+            {% endif %}
+        </div>
+        
+        <div class="mb-4">
+            <label for="{{ form.email.id_for_label }}" class="block text-gray-700 font-bold mb-2">
+                {{ form.email.label }}
+            </label>
+            {{ form.email }}
+            {% if form.email.errors %}
+                {% for error in form.email.errors %}
+                    <p class="text-red-500 text-sm mt-1">{{ error }}</p>
+                {% endfor %}
+            {% endif %}
+        </div>
+        
+        <div class="mb-4">
+            <label for="{{ form.password1.id_for_label }}" class="block text-gray-700 font-bold mb-2">
+                Password
+            </label>
+            {{ form.password1 }}
+            {% if form.password1.errors %}
+                {% for error in form.password1.errors %}
+                    <p class="text-red-500 text-sm mt-1">{{ error }}</p>
+                {% endfor %}
+            {% endif %}
+        </div>
+        
+        <div class="mb-4">
+            <label for="{{ form.password2.id_for_label }}" class="block text-gray-700 font-bold mb-2">
+                Confirm Password
+            </label>
+            {{ form.password2 }}
+            {% if form.password2.errors %}
+                {% for error in form.password2.errors %}
+                    <p class="text-red-500 text-sm mt-1">{{ error }}</p>
+                {% endfor %}
+            {% endif %}
+        </div>
+
+        <!-- Show Password Checkbox -->
+        <div class="mb-4">
+            <label class="inline-flex items-center">
+                <input type="checkbox" id="show-password" class="form-checkbox accent-cyan-800 h-4 w-4 text-cyan-800">
+                <span class="ml-2 text-gray-700">Show Password</span>
+            </label>
+        </div>
+
+        <button type="submit" class="bg-cyan-800 hover:bg-cyan-700 text-white font-bold py-2 px-4 rounded">
+            Register
+        </button>
+    </form>
+</div>
+
+<script>
+    // This show the password 
+    document.getElementById('show-password').addEventListener('change', function() {
+        const password1Field = document.getElementById('{{ form.password1.id_for_label }}');
+        const password2Field = document.getElementById('{{ form.password2.id_for_label }}');
+        
+        if (password1Field.type === 'password') {
+            password1Field.type = 'text';
+            password2Field.type = 'text';
+        } else {
+            password1Field.type = 'password';
+            password2Field.type = 'password';
+        }
+    });
+</script>
+{% endblock %}
