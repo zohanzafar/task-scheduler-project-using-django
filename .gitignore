@@ -26,6 +26,7 @@ ENV/
 # In case you're using virtual environments in different directories
 .virtualenv/
 venv/
+virenv/
 
 # Requirements.txt file
 requirements.txt
