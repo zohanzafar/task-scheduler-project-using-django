@@ -5,7 +5,7 @@
 {% block content %}
 <div class="max-w-md mx-auto bg-white p-8 rounded shadow">
     <h2 class="text-2xl font-bold mb-6">Delete Task</h2>
-    <p class="mb-6">Are you sure you want to delete the task "{{ task.title }}"?</p>
+    <p class="mb-6 break-words">Are you sure you want to delete the task "{{ task.title }}"?</p>
     <form method="post">
         {% csrf_token %}
         <div class="flex space-x-4">
